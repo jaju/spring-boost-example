@@ -4,7 +4,7 @@ When run normally, it does not load and run the Clojure code.
 
 Clojure code is enabled only when the ~dev~ profile is activated
 
-*Note*: There is no reason it _should_ be so. If you are adventurous enough (or believe in Clojure), get rid of the ~@Profile("dev")~ annotation in the ~DevWorx~ class.
+*Note*: There is no reason it _should_ be so. If you are adventurous enough (or believe in Clojure), get rid of the ~@Profile("dev")~ annotation in the [[file:src/main/java/org/msync/spring_clj/DevWorx.java][~DevWorx~]] class.
 
 #+begin_src bash
 SPRING_PROFILES_ACTIVE=dev ./gradlew clean bootRun
