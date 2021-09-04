@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="console-appender.xml"/>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <springProfile name="dev">
+        <logger name="org.msync" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="default">
+        <logger name="org.msync" level="info" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </springProfile>
+
+    <logger name="org.springframework" level="warn" additivity="false">
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="Console"/>
+    </root>
+
+</configuration>

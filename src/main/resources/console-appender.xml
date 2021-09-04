@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                [%boldWhite(%d{ISO8601})] %yellow(%-5level) [%green(%t)] %boldMagenta(%C{1.})::%boldYellow(%M) %msg%n%throwable
+            </pattern>
+        </encoder>
+    </appender>
+</included>
