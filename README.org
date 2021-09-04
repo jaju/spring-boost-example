@@ -14,7 +14,7 @@ SPRING_PROFILES_ACTIVE=dev ./gradlew clean bootRun
 
 
 Output looks something like
-#+begin_quote
+#+begin_verbatim
 > Task :bootRun
 
   .   ____          _            __ _ _
@@ -31,4 +31,4 @@ Output looks something like
 [2021-09-04 20:50:08,723] INFO  [main] jdk.internal.reflect.NativeMethodAccessorImpl::invoke0 [spring-clj] Initializing clojure app...n
 <===========--> 85% EXECUTING [32s]
 > :bootRun
-#+end_quote
+#+end_verbatim
