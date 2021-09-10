@@ -24,7 +24,7 @@ repositories {
         name = "Clojars"
         url = uri("https://clojars.org/repo")
     }
-    // When using SNAPSHOT version of spring-boot-bugger
+    // When using SNAPSHOT version of spring-boost
     maven {
         name = "Sonatype Snapshots"
         url = uri("https://oss.sonatype.org/content/repositories/snapshots")
@@ -37,12 +37,14 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework:spring-websocket")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation("io.projectreactor.tools:blockhound:1.0.6.RELEASE")
     implementation("io.projectreactor:reactor-tools")
     implementation("org.clojure:clojure:1.10.3")
-    implementation("org.msync:spring-boot-bugger:0.2.0-alpha1")
+    implementation("org.msync:spring-boost:0.2.0-SNAPSHOT")
     implementation("compojure:compojure:1.6.2")
+    implementation("com.taoensso:sente:1.16.2")
 }
 
 tasks.register<Copy>("copyClojure") {

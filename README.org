@@ -1,4 +1,4 @@
-* Sample SpringBoot project using [[https://github.com/jaju/spring-boot-bugger][spring-boot-bugger]]
+* Sample SpringBoot project using [[https://github.com/jaju/spring-boost][spring-boost]]
 
 When run normally, it does not load and run the Clojure code.
 
@@ -27,25 +27,37 @@ Output looks something like
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.5.4)
 
-[2021-09-04 20:50:06,775] INFO  [main] org.msync.spring_boot_bugger.application_context$_component_init::invokeStatic Initializing the ClojureComponent
-[2021-09-04 20:50:07,512] INFO  [main] org.msync.spring_boot_bugger.Bugger::startNrepl nREPL server started on port = 8190
-[2021-09-04 20:50:07,514] INFO  [main] org.msync.spring_boot_bugger.Bugger::setupAppInit Initializing clojure code: org.msync.spring-clj.core/main
-[2021-09-04 20:50:08,723] INFO  [main] jdk.internal.reflect.NativeMethodAccessorImpl::invoke0 [spring-clj] Initializing clojure app...n
-<===========--> 85% EXECUTING [32s]
+[2021-09-10 12:08:14,182] INFO  [main] org.msync.spring_boost.application_context$_component_init::invokeStatic Initializing the ClojureComponent
+[2021-09-10 12:08:14,984] INFO  [main] org.msync.spring_boost.Boost::startNrepl nREPL server started on port = 8190
+[2021-09-10 12:08:14,986] INFO  [main] org.msync.spring_boost.Boost::setupAppInit Initializing clojure code: org.msync.spring-clj.core/main
+[2021-09-10 12:08:21,097] INFO  [main] jdk.internal.reflect.NativeMethodAccessorImpl::invoke0 [spring-clj] Initializing clojure app...n
+<===========--> 85% EXECUTING [29s]
 > :bootRun
 #+end_example
 
 ** The Clojure Code
 #+begin_src clojure :tangle src/main/clojure/org/msync/spring_clj/core.clj :comments link
 (ns org.msync.spring-clj.core
-  (:require [org.msync.spring-boot-bugger :as bugger]
+  (:require [org.msync.spring-boost :as boost]
             [compojure.core :refer :all]
             [compojure.route :refer [not-found]]
-            [clojure.string])
+            [clojure.string]
+            [taoensso.sente :as sente])
   (:import [java.util.logging Logger]
            [org.springframework.context ApplicationContext]))
 
 (defonce logger (Logger/getLogger (str *ns*)))
+
+#_(let [{:keys [ch-recv send-fn connected-uids
+              ajax-post-fn ajax-get-or-ws-handshake-fn]}
+      (sente/make-channel-socket! (get-sch-adapter) {})]
+
+  (def ring-ajax-post                ajax-post-fn)
+  (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
+  (defonce ch-chsk                       ch-recv) ; ChannelSocket's receive channel
+  (defonce chsk-send!                    send-fn) ; ChannelSocket's send API fn
+  (defonce connected-uids                connected-uids) ; Watchable, read-only atom
+  )
 
 (defroutes app
   "Root hello-world GET endpoint, and another echo end-point that handles both GET and POST.
@@ -63,6 +75,7 @@ Output looks something like
          :headers {:content-type "application/json"}
          :body {:greetings (str "Hello, " greeter)
                 :echo (:body request)}})
+  #_(GET  "/chsk" req (ring-ajax-get-or-ws-handshake req))
   (not-found "<h1>Page not found</h1>"))
 
 (defn main
@@ -71,5 +84,5 @@ Output looks something like
   [^ApplicationContext application-context]
 
   (.info logger (str "[spring-clj] Initializing clojure app..."))
-  (bugger/set-handler! app))
+  (boost/set-handler! app))
 #+end_src
