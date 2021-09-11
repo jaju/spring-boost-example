@@ -44,7 +44,6 @@ dependencies {
     implementation("org.clojure:clojure:1.10.3")
     implementation("org.msync:spring-boost:0.2.0-SNAPSHOT")
     implementation("compojure:compojure:1.6.2")
-    implementation("com.taoensso:sente:1.16.2")
 }
 
 tasks.register<Copy>("copyClojure") {

@@ -3,23 +3,11 @@
   (:require [org.msync.spring-boost :as boost]
             [compojure.core :refer :all]
             [compojure.route :refer [not-found]]
-            [clojure.string]
-            [taoensso.sente :as sente])
+            [clojure.string])
   (:import [java.util.logging Logger]
            [org.springframework.context ApplicationContext]))
 
 (defonce logger (Logger/getLogger (str *ns*)))
-
-#_(let [{:keys [ch-recv send-fn connected-uids
-              ajax-post-fn ajax-get-or-ws-handshake-fn]}
-      (sente/make-channel-socket! (get-sch-adapter) {})]
-
-  (def ring-ajax-post                ajax-post-fn)
-  (def ring-ajax-get-or-ws-handshake ajax-get-or-ws-handshake-fn)
-  (defonce ch-chsk                       ch-recv) ; ChannelSocket's receive channel
-  (defonce chsk-send!                    send-fn) ; ChannelSocket's send API fn
-  (defonce connected-uids                connected-uids) ; Watchable, read-only atom
-  )
 
 (defroutes app
   "Root hello-world GET endpoint, and another echo end-point that handles both GET and POST.
@@ -37,8 +25,11 @@
          :headers {:content-type "application/json"}
          :body {:greetings (str "Hello, " greeter)
                 :echo (:body request)}})
-  #_(GET  "/chsk" req (ring-ajax-get-or-ws-handshake req))
   (not-found "<h1>Page not found</h1>"))
+
+(defn web-socket-handler [session]
+  (fn [^String message]
+    (str "Hello, " (.toUpperCase message))))
 
 (defn main
   "Set this as your entry-point for the Clojure code in your spring-boot app.
@@ -46,5 +37,6 @@
   [^ApplicationContext application-context]
 
   (.info logger (str "[spring-clj] Initializing clojure app..."))
-  (boost/set-handler! app))
+  (boost/set-handler! app)
+  (boost/set-websocket-handler! web-socket-handler))
 ;; The Clojure Code:1 ends here
