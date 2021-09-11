@@ -24,14 +24,6 @@ repositories {
         name = "Clojars"
         url = uri("https://clojars.org/repo")
     }
-    // When using SNAPSHOT version of spring-boost
-    maven {
-        name = "Sonatype Snapshots"
-        url = uri("https://oss.sonatype.org/content/repositories/snapshots")
-        mavenContent {
-            snapshotsOnly()
-        }
-    }
     mavenCentral()
 }
 
