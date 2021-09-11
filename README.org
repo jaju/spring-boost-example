@@ -66,6 +66,8 @@ Output looks something like
   (not-found "<h1>Page not found</h1>"))
 
 (defn web-socket-handler [session]
+  (pr-str session)
+  ;; Use the session as you wish - to create session-specific handlers
   (fn [^String message]
     (str "Hello, " (.toUpperCase message))))
 
