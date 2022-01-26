@@ -12,8 +12,8 @@ public class SpringCljApplication {
 
     public static void main(String[] args) {
         // Initialize blackhound to catch any blocking calls.
-        BlockHound.install();
-        ReactorDebugAgent.init();
+//        BlockHound.install();
+//        ReactorDebugAgent.init();
         SpringApplication.run(SpringCljApplication.class, args);
     }
 

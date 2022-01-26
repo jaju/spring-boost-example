@@ -39,11 +39,8 @@ dependencies {
 }
 
 tasks.register<Copy>("copyClojure") {
-    into("build/classes/java/main") {
-        destinationDir = file(".")
-        from("src/main/clojure")
-    }
+    from("src/main/clojure")
+    into("build/classes/java/main")
 }
 
-tasks.getByName("bootRun").dependsOn("copyClojure")
-tasks.getByName("bootJar").dependsOn("copyClojure")
+tasks.getByName("bootRunMainClassName").dependsOn("copyClojure")

@@ -1,7 +1,7 @@
 spring:
   main:
     banner-mode: console
-    log-startup-info: off
+    log-startup-info: on
 
 clojure-component:
   nrepl-port: 8190

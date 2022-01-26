@@ -3,7 +3,8 @@
   (:require [org.msync.spring-boost :as boost]
             [compojure.core :refer :all]
             [compojure.route :refer [not-found]]
-            [clojure.string])
+            [clojure.string]
+            [clojure.pprint :refer [pprint]])
   (:import [java.util.logging Logger]
            [org.springframework.context ApplicationContext]))
 
@@ -28,10 +29,10 @@
   (not-found "<h1>Page not found</h1>"))
 
 (defn web-socket-handler [session]
-  (pr-str session)
-  ;; Use the session as you wish - to create session-specific handlers
+  (pprint session)
+
   (fn [^String message]
-    (str "Hello, " (.toUpperCase message))))
+    (str "*Hello*, " (.toUpperCase message))))
 
 (defn main
   "Set this as your entry-point for the Clojure code in your spring-boot app.
@@ -41,4 +42,12 @@
   (.info logger (str "[spring-clj] Initializing clojure app..."))
   (boost/set-handler! app)
   (boost/set-websocket-handler! web-socket-handler))
+
+(comment
+  (require '[org.msync.spring-boost.application-context :as ac])
+  (ac/get-application-context)
+  (ac/beans-with-annotation org.springframework.stereotype.Component)
+  (->> (ac/beans-with-annotation org.springframework.stereotype.Component)
+       vals
+       (map class)))
 ;; The Clojure Code:1 ends here
