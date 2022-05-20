@@ -25,13 +25,17 @@ Output looks something like
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::                (v2.5.4)
+ :: Spring Boot ::                (v2.7.0)
 
-[2021-09-10 12:08:14,182] INFO  [main] org.msync.spring_boost.application_context$_component_init::invokeStatic Initializing the ClojureComponent
-[2021-09-10 12:08:14,984] INFO  [main] org.msync.spring_boost.Boost::startNrepl nREPL server started on port = 8190
-[2021-09-10 12:08:14,986] INFO  [main] org.msync.spring_boost.Boost::setupAppInit Initializing clojure code: org.msync.spring-clj.core/main
-[2021-09-10 12:08:21,097] INFO  [main] jdk.internal.reflect.NativeMethodAccessorImpl::invoke0 [spring-clj] Initializing clojure app...n
-<===========--> 85% EXECUTING [29s]
+[2022-05-21 00:18:07,877] INFO  [main] org.springframework.boot.StartupInfoLogger::logStarting Starting SpringCljApplication using Java 17.0.3 on tachyon-mac-2.local with PID 43464 (/Users/jaju/github/spring-clj/build/classes/java/main started by jaju in /Users/jaju/github/spring-clj)
+[2022-05-21 00:18:07,879] DEBUG [main] org.springframework.boot.StartupInfoLogger::logStarting Running with Spring Boot v2.7.0, Spring v5.3.20
+[2022-05-21 00:18:07,880] INFO  [main] org.springframework.boot.SpringApplication::logStartupProfileInfo The following 1 profile is active: "dev"
+[2022-05-21 00:18:09,144] INFO  [main] org.msync.spring_boost.application_context$_component_init::invokeStatic Initializing the ClojureComponent
+[2022-05-21 00:18:09,986] INFO  [main] org.msync.spring_boost.Boost::startNrepl nREPL server started on port = 8190
+[2022-05-21 00:18:09,986] INFO  [main] org.msync.spring_boost.Boost::setInitSymbol Initializing clojure code: org.msync.spring-clj.core/main
+[2022-05-21 00:18:11,275] INFO  [main] jdk.internal.reflect.NativeMethodAccessorImpl::invoke0 [spring-clj] Initializing clojure app...
+[2022-05-21 00:18:11,543] INFO  [main] org.springframework.boot.StartupInfoLogger::logStarted Started SpringCljApplication in 4.278 seconds (JVM running for 4.491)
+<===========--> 85% EXECUTING [17s]
 > :bootRun
 #+end_example
 
