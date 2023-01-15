@@ -1,7 +1,7 @@
 plugins {
     id("java")
-    id("org.springframework.boot") version "2.7.0"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+    id("org.springframework.boot") version "2.7.7"
+    id("io.spring.dependency-management") version "1.1.0"
 }
 
 java {
@@ -35,7 +35,7 @@ dependencies {
     implementation("io.projectreactor:reactor-tools")
     implementation("org.clojure:clojure:1.11.1")
     implementation("org.msync:spring-boost:0.2.0-SNAPSHOT")
-    implementation("compojure:compojure:1.6.3")
+    implementation("compojure:compojure:1.7.0")
 }
 
 tasks.register<Copy>("copyClojure") {

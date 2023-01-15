@@ -14,7 +14,6 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/spring")
 public class DevWorx {
-
     @GetMapping("/")
     Mono<String> get() {
         return Mono.just("Hello, World!");
