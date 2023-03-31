@@ -30,7 +30,7 @@
 
 (defn web-socket-handler [session]
   (pprint session)
-
+  ;; Use the session as you wish - to create session-specific handlers
   (fn [^String message]
     (str "*Hello*, " (.toUpperCase message))))
 
@@ -46,6 +46,9 @@
 (comment
   (require '[org.msync.spring-boost.application-context :as ac])
   (ac/get-application-context)
+    (def boost-configuration (get components "boostConfiguration"))
+  (map str (.getMethods (class boost-configuration)))
+  (.getMethod (class boost-configuration) "setInitSymbol" (into-array Class [String]))
   (ac/beans-with-annotation org.springframework.stereotype.Component)
   (->> (ac/beans-with-annotation org.springframework.stereotype.Component)
        vals
